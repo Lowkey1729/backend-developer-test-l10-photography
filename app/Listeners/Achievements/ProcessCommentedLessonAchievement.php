@@ -2,6 +2,7 @@
 
 namespace App\Listeners\Achievements;
 
+use App\Actions\UnlockAchievementAction;
 use App\Enums\CommentAchievementNameEnum;
 use App\Events\CommentWritten;
 use App\Listeners\Achievements\Concerns\HandleAchievementTrait;
@@ -10,6 +11,7 @@ use App\Models\Comment;
 class ProcessCommentedLessonAchievement
 {
     use HandleAchievementTrait;
+
     /**
      * Create the event listener.
      */
@@ -30,15 +32,14 @@ class ProcessCommentedLessonAchievement
             ->where('lesson_id', $comment->lesson_id)
             ->count();
 
-        match ($commentsCount){
-            1 => $this->resolveAchievement(CommentAchievementNameEnum::FIRST_COMMENT_WRITTEN->name, $comment->user),
-            3 => $this->resolveAchievement(CommentAchievementNameEnum::THREE_LESSONS_WRITTEN->name, $comment->user),
-            5 => $this->resolveAchievement(CommentAchievementNameEnum::FIVE_LESSONS_WRITTEN->name, $comment->user),
-            10 => $this->resolveAchievement(CommentAchievementNameEnum::TEN_LESSONS_WRITTEN->name, $comment->user),
-            20 => $this->resolveAchievement(CommentAchievementNameEnum::TWENTY_LESSONS_WRITTEN->name, $comment->user),
+        match ($commentsCount) {
+            1 => UnlockAchievementAction::execute(CommentAchievementNameEnum::FIRST_COMMENT_WRITTEN->name, $comment->user),
+            3 => UnlockAchievementAction::execute(CommentAchievementNameEnum::THREE_LESSONS_WRITTEN->name, $comment->user),
+            5 => UnlockAchievementAction::execute(CommentAchievementNameEnum::FIVE_LESSONS_WRITTEN->name, $comment->user),
+            10 => UnlockAchievementAction::execute(CommentAchievementNameEnum::TEN_LESSONS_WRITTEN->name, $comment->user),
+            20 => UnlockAchievementAction::execute(CommentAchievementNameEnum::TWENTY_LESSONS_WRITTEN->name, $comment->user),
             default => null
         };
-
 
     }
 

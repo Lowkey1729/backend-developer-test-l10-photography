@@ -30,20 +30,6 @@ class LessonWatchedAchievementUnlockedEventTest extends TestCase
 
     }
 
-    //my test cases
-
-    //lesson updates to watch when a course is completed
-
-    //the lesson watched event is triggered
-
-    //the processLessonWatchedAchievement listener is triggered
-
-    //when watched lessons is not within the required lesson watched achievement list, it does not trigger any event
-
-    //when watched lessons is not within the required lesson watched achievement list, it does not save to unlocked achievement
-
-    //achievement unlocked event is fired
-
     /**
      * @throws \Exception
      */

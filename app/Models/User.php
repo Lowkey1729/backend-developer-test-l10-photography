@@ -3,6 +3,7 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\BadgeStatusEnum;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -76,6 +77,23 @@ class User extends Authenticatable
     public function achievements(): BelongsToMany
     {
         return $this->belongsToMany(Achievement::class);
+    }
+
+    public function badges(): BelongsToMany
+    {
+        return $this->belongsToMany(Badge::class)->withPivot('status');
+    }
+
+    public function activeBadges(): BelongsToMany
+    {
+        return $this->belongsToMany(Badge::class)
+            ->wherePivot('status', BadgeStatusEnum::ACTIVE->value);
+    }
+
+    public function inActiveBadges(): BelongsToMany
+    {
+        return $this->belongsToMany(Badge::class)
+            ->wherePivot('status', BadgeStatusEnum::INACTIVE->value);
     }
 }
 

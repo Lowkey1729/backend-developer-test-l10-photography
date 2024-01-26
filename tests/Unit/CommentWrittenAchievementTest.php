@@ -3,14 +3,11 @@
 namespace Tests\Unit;
 
 use App\Actions\CommentOnLessonAction;
-use App\Actions\ProcessWatchedLessonAction;
 use App\Enums\CommentAchievementNameEnum;
 use App\Enums\LessonAchievementNameEnum;
 use App\Events\AchievementUnlocked;
 use App\Events\CommentWritten;
-use App\Events\LessonWatched;
 use App\Listeners\Achievements\ProcessCommentedLessonAchievement;
-use App\Listeners\Achievements\ProcessLessonWatchedAchievements;
 use App\Models\Achievement;
 use App\Models\Comment;
 use App\Models\Lesson;
@@ -29,6 +26,7 @@ class CommentWrittenAchievementTest extends TestCase
         parent::setUp();
 
         $this->user = User::factory()->create();
+
         Achievement::factory()
             ->count(10)
             ->defaultAchievements()
@@ -197,6 +195,7 @@ class CommentWrittenAchievementTest extends TestCase
         $userAchievement = $this->user->achievements()->where('achievement_id', $fiveLessonsAchievement->id)->first();
 
         $this->assertNotNull($userAchievement);
+
         Event::fake();
 
         resolve(ProcessCommentedLessonAchievement::class)

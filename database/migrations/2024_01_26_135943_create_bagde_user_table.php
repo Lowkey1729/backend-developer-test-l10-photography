@@ -11,9 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('achievement_user', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained();
-            $table->foreignId('achievement_id')->constrained();
+        Schema::create('badge_user', function (Blueprint $table) {
+           $table->foreignId('badge_id')->constrained();
+           $table->foreignId('user_id')->constrained();
+           $table->string('status')->default('inactive');
         });
     }
 
@@ -22,6 +23,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('achievement_user');
+        Schema::dropIfExists('bagde_user');
     }
 };

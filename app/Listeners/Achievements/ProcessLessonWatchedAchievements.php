@@ -2,6 +2,7 @@
 
 namespace App\Listeners\Achievements;
 
+use App\Actions\UnlockAchievementAction;
 use App\Enums\LessonAchievementNameEnum;
 use App\Events\AchievementUnlocked;
 use App\Events\LessonWatched;
@@ -11,7 +12,6 @@ use App\Models\User;
 
 class ProcessLessonWatchedAchievements
 {
-    use HandleAchievementTrait;
     /**
      * Create the event listener.
      */
@@ -30,11 +30,11 @@ class ProcessLessonWatchedAchievements
         $watchedLessonsCount = $user->watched()->count();
 
         match ($watchedLessonsCount) {
-            1 => $this->resolveAchievement(LessonAchievementNameEnum::FIRST_LESSON_WATCHED->name, $user),
-            5 => $this->resolveAchievement(LessonAchievementNameEnum::FIVE_LESSONS_WATCHED->name, $user),
-            10 => $this->resolveAchievement(LessonAchievementNameEnum::TEN_LESSONS_WATCHED->name, $user),
-            25 => $this->resolveAchievement(LessonAchievementNameEnum::TWENTY_FIVE_LESSONS_WATCHED->name, $user),
-            50 => $this->resolveAchievement(LessonAchievementNameEnum::FIFTY_LESSONS_WATCHED->name, $user),
+            1 => UnlockAchievementAction::execute(LessonAchievementNameEnum::FIRST_LESSON_WATCHED->name, $user),
+            5 => UnlockAchievementAction::execute(LessonAchievementNameEnum::FIVE_LESSONS_WATCHED->name, $user),
+            10 => UnlockAchievementAction::execute(LessonAchievementNameEnum::TEN_LESSONS_WATCHED->name, $user),
+            25 => UnlockAchievementAction::execute(LessonAchievementNameEnum::TWENTY_FIVE_LESSONS_WATCHED->name, $user),
+            50 => UnlockAchievementAction::execute(LessonAchievementNameEnum::FIFTY_LESSONS_WATCHED->name, $user),
             default => null
         };
 
