@@ -44,6 +44,9 @@ class BadgesAcquiredTest extends TestCase
 
         UnlockBadgeAction::execute($this->user);
 
+        $this->assertEquals(4, $this->user->achievements()->count());
+
+
         $this->assertBadgeWasAcquired(BadgeNameEnum::INTERMEDIATE->name);
 
     }
@@ -63,6 +66,8 @@ class BadgesAcquiredTest extends TestCase
 
         UnlockBadgeAction::execute($this->user);
 
+        $this->assertEquals(8, $this->user->achievements()->count());
+
         $this->assertBadgeWasAcquired(BadgeNameEnum::ADVANCED->name);
 
     }
@@ -81,6 +86,8 @@ class BadgesAcquiredTest extends TestCase
         \Event::fake();
 
         UnlockBadgeAction::execute($this->user);
+
+        $this->assertEquals(10, $this->user->achievements()->count());
 
         $this->assertBadgeWasAcquired(BadgeNameEnum::MASTER->name);
 
