@@ -6,7 +6,7 @@ use App\Actions\ProcessWatchedLessonAction;
 use App\Enums\LessonAchievementNameEnum;
 use App\Events\AchievementUnlocked;
 use App\Events\LessonWatched;
-use App\Listeners\ProcessLessonWatchedAchievements;
+use App\Listeners\Achievements\ProcessLessonWatchedAchievements;
 use App\Models\Achievement;
 use App\Models\Lesson;
 use App\Models\User;

@@ -1,18 +1,17 @@
 <?php
 
-namespace App\Listeners;
+namespace App\Listeners\Achievements;
 
 use App\Enums\LessonAchievementNameEnum;
 use App\Events\AchievementUnlocked;
 use App\Events\LessonWatched;
+use App\Listeners\Achievements\Concerns\HandleAchievementTrait;
 use App\Models\Achievement;
 use App\Models\User;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Str;
 
 class ProcessLessonWatchedAchievements
 {
+    use HandleAchievementTrait;
     /**
      * Create the event listener.
      */
@@ -41,15 +40,4 @@ class ProcessLessonWatchedAchievements
 
     }
 
-    protected function resolveAchievement(string $lessonAchievementName, User $user): void
-    {
-
-        $lessonAchievement = Achievement::query()
-            ->where('name', $lessonAchievementName)
-            ->first();
-
-        $user->achievements()->attach($lessonAchievement->id);
-
-        event(new AchievementUnlocked($lessonAchievementName, $user));
-    }
 }

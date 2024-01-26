@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Enums\AchievementCategoryEnum;
+use App\Enums\CommentAchievementNameEnum;
 use App\Enums\LessonAchievementNameEnum;
 use App\Models\Achievement;
 use App\Models\User;
@@ -52,27 +53,27 @@ class AchievementFactory extends Factory
                     'order' => 5
                 ],
                 [
-                    'name' => 'First Comment Written',
+                    'name' => CommentAchievementNameEnum::FIRST_COMMENT_WRITTEN->name,
                     'category' => AchievementCategoryEnum::COMMENTS->name,
                     'order' => 1
                 ],
                 [
-                    'name' => '3 Comment Written',
+                    'name' => CommentAchievementNameEnum::THREE_LESSONS_WRITTEN->name,
                     'category' => AchievementCategoryEnum::COMMENTS->name,
                     'order' => 2
                 ],
                 [
-                    'name' => '5 Comment Written',
+                    'name' => CommentAchievementNameEnum::FIVE_LESSONS_WRITTEN->name,
                     'category' => AchievementCategoryEnum::COMMENTS->name,
                     'order' => 3
                 ],
                 [
-                    'name' => '10 Comment Written',
+                    'name' => CommentAchievementNameEnum::TEN_LESSONS_WRITTEN->name,
                     'category' => AchievementCategoryEnum::COMMENTS->name,
                     'order' => 4
                 ],
                 [
-                    'name' => '20 Comment Written',
+                    'name' => CommentAchievementNameEnum::TWENTY_LESSONS_WRITTEN->name,
                     'category' => AchievementCategoryEnum::COMMENTS->name,
                     'order' => 5
                 ]

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Lesson;
 use App\Models\User;
 use App\Models\Comment;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -20,11 +21,12 @@ class CommentFactory extends Factory
      *
      * @return array
      */
-    public function definition()
+    public function definition(): array
     {
         return [
             'body' => $this->faker->text(),
             'user_id' => User::factory(),
+            'lesson_id' => Lesson::factory()->create()
         ];
     }
 }
