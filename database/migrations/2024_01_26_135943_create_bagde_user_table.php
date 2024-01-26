@@ -12,9 +12,9 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('badge_user', function (Blueprint $table) {
-           $table->foreignId('badge_id')->constrained();
-           $table->foreignId('user_id')->constrained();
-           $table->string('status')->default('inactive');
+            $table->foreignId('badge_id')->constrained();
+            $table->foreignId('user_id')->constrained();
+            $table->string('status')->default('inactive');
         });
     }
 

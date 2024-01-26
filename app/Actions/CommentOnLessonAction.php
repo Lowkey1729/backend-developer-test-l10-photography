@@ -3,7 +3,6 @@
 namespace App\Actions;
 
 use App\Events\CommentWritten;
-use App\Listeners\Achievements\ProcessCommentedLessonAchievement;
 use App\Models\Comment;
 use App\Models\Lesson;
 use App\Models\User;
@@ -14,9 +13,9 @@ class CommentOnLessonAction
     {
         $comment = Comment::query()
             ->create([
-               'body' => $body,
-               'user_id' => $user->id,
-               'lesson_id' => $lesson->id
+                'body' => $body,
+                'user_id' => $user->id,
+                'lesson_id' => $lesson->id,
             ]);
 
         event(new CommentWritten($comment));

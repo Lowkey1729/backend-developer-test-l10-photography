@@ -17,13 +17,13 @@ class Lesson extends Model
      * @var array
      */
     protected $fillable = [
-        'title'
+        'title',
     ];
 
     public function users(): BelongsToMany
     {
         return $this->belongsToMany(User::class)
-                ->withPivot('watched');
+            ->withPivot('watched');
     }
 
     public function comments(): HasMany

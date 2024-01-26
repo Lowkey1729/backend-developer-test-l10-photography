@@ -4,11 +4,7 @@ namespace App\Listeners\Achievements;
 
 use App\Actions\UnlockAchievementAction;
 use App\Enums\LessonAchievementNameEnum;
-use App\Events\AchievementUnlocked;
 use App\Events\LessonWatched;
-use App\Listeners\Achievements\Concerns\HandleAchievementTrait;
-use App\Models\Achievement;
-use App\Models\User;
 
 class ProcessLessonWatchedAchievements
 {
@@ -39,5 +35,4 @@ class ProcessLessonWatchedAchievements
         };
 
     }
-
 }

@@ -96,4 +96,3 @@ class User extends Authenticatable
             ->wherePivot('status', BadgeStatusEnum::INACTIVE->value);
     }
 }
-

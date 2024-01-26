@@ -23,12 +23,12 @@ class EventServiceProvider extends ServiceProvider
         ],
 
         LessonWatched::class => [
-            ProcessLessonWatchedAchievements::class
+            ProcessLessonWatchedAchievements::class,
         ],
 
         CommentWritten::class => [
-            ProcessCommentedLessonAchievement::class
-        ]
+            ProcessCommentedLessonAchievement::class,
+        ],
 
     ];
 

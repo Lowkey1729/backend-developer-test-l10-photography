@@ -2,15 +2,14 @@
 
 namespace App\Events;
 
-use App\Models\User;
 use App\Models\Lesson;
-use Illuminate\Queue\SerializesModels;
+use App\Models\User;
 use Illuminate\Foundation\Events\Dispatchable;
+use Illuminate\Queue\SerializesModels;
 
 class LessonWatched
 {
     use Dispatchable, SerializesModels;
-
 
     /**
      * Create a new event instance.
@@ -20,7 +19,6 @@ class LessonWatched
     public function __construct(
         public Lesson $lesson,
         public User $user
-    )
-    {
+    ) {
     }
 }

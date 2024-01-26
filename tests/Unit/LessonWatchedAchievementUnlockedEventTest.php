@@ -15,7 +15,6 @@ use Tests\TestCase;
 
 class LessonWatchedAchievementUnlockedEventTest extends TestCase
 {
-
     public User $user;
 
     protected function setUp(): void
@@ -54,7 +53,6 @@ class LessonWatchedAchievementUnlockedEventTest extends TestCase
         Event::assertDispatched(AchievementUnlocked::class);
 
     }
-
 
     public function test_it_unlocks_first_lesson_watched_achievement(): void
     {
@@ -176,7 +174,7 @@ class LessonWatchedAchievementUnlockedEventTest extends TestCase
         $lessonIsWatched = $this->user->lessons()->where('lesson_id', $lesson->id)
             ->first()->pivot->watched;
 
-        $this->assertTrue((bool)$lessonIsWatched);
+        $this->assertTrue((bool) $lessonIsWatched);
 
     }
 

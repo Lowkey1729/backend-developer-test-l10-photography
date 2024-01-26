@@ -7,7 +7,6 @@ use App\Enums\BadgeStatusEnum;
 use App\Events\BadgeUnlocked;
 use App\Models\Badge;
 use App\Models\User;
-use function PHPUnit\Framework\matches;
 
 class UnlockBadgeAction
 {
@@ -16,7 +15,7 @@ class UnlockBadgeAction
 
         $achievementsCount = $user->achievements()->count();
 
-        match($achievementsCount){
+        match ($achievementsCount) {
             0 => self::resolveBadges(BadgeNameEnum::BEGINNER->name, $user),
             4 => self::resolveBadges(BadgeNameEnum::INTERMEDIATE->name, $user),
             8 => self::resolveBadges(BadgeNameEnum::ADVANCED->name, $user),
@@ -27,18 +26,18 @@ class UnlockBadgeAction
 
     protected static function resolveBadges(string $badgeName, User $user): void
     {
-        $badge =  Badge::query()
+        $badge = Badge::query()
             ->where('name', $badgeName)
             ->first();
 
-        \DB::transaction(function () use ($user, $badge){
+        \DB::transaction(function () use ($user, $badge) {
 
-           $ids = $user->activeBadges()->pluck('badge_id')->toArray();
+            $ids = $user->activeBadges()->pluck('badge_id')->toArray();
 
-           $user->activeBadges()->syncWithPivotValues($ids, ['status' => BadgeStatusEnum::INACTIVE->value]);
+            $user->activeBadges()->syncWithPivotValues($ids, ['status' => BadgeStatusEnum::INACTIVE->value]);
 
-           $user->badges()->attach($badge->id, ['status' => BadgeStatusEnum::ACTIVE->value]);
-       });
+            $user->badges()->attach($badge->id, ['status' => BadgeStatusEnum::ACTIVE->value]);
+        });
 
         event(new BadgeUnlocked($badgeName, $user));
 

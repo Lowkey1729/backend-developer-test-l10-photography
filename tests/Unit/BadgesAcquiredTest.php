@@ -2,15 +2,11 @@
 
 namespace Tests\Unit;
 
-use App\Actions\ProcessWatchedLessonAction;
-use App\Actions\UnlockAchievementAction;
 use App\Actions\UnlockBadgeAction;
 use App\Enums\BadgeNameEnum;
-use App\Enums\LessonAchievementNameEnum;
 use App\Events\BadgeUnlocked;
 use App\Models\Achievement;
 use App\Models\Badge;
-use App\Models\Lesson;
 use App\Models\User;
 use Tests\TestCase;
 
@@ -29,6 +25,7 @@ class BadgesAcquiredTest extends TestCase
         Badge::factory()->defaultBadges()->count(4)->create();
 
     }
+
     /**
      * A basic feature test example.
      */
@@ -104,7 +101,7 @@ class BadgesAcquiredTest extends TestCase
 
         UnlockBadgeAction::execute($this->user);
 
-        $badge =  Badge::query()
+        $badge = Badge::query()
             ->where('name', BadgeNameEnum::MASTER->name)
             ->first();
 
@@ -118,7 +115,7 @@ class BadgesAcquiredTest extends TestCase
 
     protected function assertBadgeWasAcquired(string $badgeName): void
     {
-        $badge =  Badge::query()
+        $badge = Badge::query()
             ->where('name', $badgeName)
             ->first();
 
@@ -129,5 +126,4 @@ class BadgesAcquiredTest extends TestCase
         \Event::assertDispatched(BadgeUnlocked::class);
 
     }
-
 }

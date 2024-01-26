@@ -3,7 +3,6 @@
 namespace Database\Seeders;
 
 use App\Models\Achievement;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class AchievementSeeder extends Seeder
@@ -17,6 +16,4 @@ class AchievementSeeder extends Seeder
             ->count(10)
             ->defaultAchievements()->create();
     }
-
-
 }

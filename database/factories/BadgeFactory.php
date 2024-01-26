@@ -14,28 +14,28 @@ class BadgeFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->sentence
+            'name' => $this->faker->sentence,
         ];
     }
 
     public function defaultBadges()
     {
         return $this->state(new Sequence(
-           [
-               'name' => BadgeNameEnum::BEGINNER->name,
-               'order' => 1
-           ],
+            [
+                'name' => BadgeNameEnum::BEGINNER->name,
+                'order' => 1,
+            ],
             [
                 'name' => BadgeNameEnum::INTERMEDIATE->name,
-                'order' => 2
+                'order' => 2,
             ],
             [
                 'name' => BadgeNameEnum::ADVANCED->name,
-                'order' => 3
+                'order' => 3,
             ],
             [
                 'name' => BadgeNameEnum::MASTER->name,
-                'order' => 4
+                'order' => 4,
             ]
         ));
     }
