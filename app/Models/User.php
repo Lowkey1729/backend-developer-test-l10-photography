@@ -4,6 +4,7 @@ namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
@@ -54,17 +55,26 @@ class User extends Authenticatable
     /**
      * The lessons that a user has access to.
      */
-    public function lessons()
+    public function lessons(): BelongsToMany
     {
-        return $this->belongsToMany(Lesson::class);
+        return $this->belongsToMany(Lesson::class)
+            ->withPivot('watched');
     }
 
     /**
      * The lessons that a user has watched.
      */
-    public function watched()
+    public function watched(): BelongsToMany
     {
         return $this->belongsToMany(Lesson::class)->wherePivot('watched', true);
+    }
+
+    /**
+     * The achievements that has been unlocked by the user.
+     */
+    public function achievements(): BelongsToMany
+    {
+        return $this->belongsToMany(Achievement::class);
     }
 }
 

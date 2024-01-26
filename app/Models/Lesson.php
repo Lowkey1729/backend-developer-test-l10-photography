@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Lesson extends Model
 {
@@ -17,4 +18,10 @@ class Lesson extends Model
     protected $fillable = [
         'title'
     ];
+
+    public function users(): BelongsToMany
+    {
+        return $this->belongsToMany(User::class)
+                ->withPivot('watched');
+    }
 }
