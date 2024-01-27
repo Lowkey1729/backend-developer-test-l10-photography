@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\Lessons;
 
 use App\Events\LessonWatched;
 use App\Models\Lesson;

@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Actions\ProcessWatchedLessonAction;
+use App\Actions\Lessons\ProcessWatchedLessonAction;
 use App\Enums\LessonAchievementNameEnum;
 use App\Events\AchievementUnlocked;
 use App\Events\LessonWatched;

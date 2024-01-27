@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Actions\CommentOnLessonAction;
+use App\Actions\Lessons\CommentOnLessonAction;
 use App\Enums\CommentAchievementNameEnum;
 use App\Enums\LessonAchievementNameEnum;
 use App\Events\AchievementUnlocked;

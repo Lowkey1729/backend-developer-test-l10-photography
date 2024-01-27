@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\Achievements;
 
+use App\Actions\Badges\UnlockBadgeAction;
 use App\Events\AchievementUnlocked;
 use App\Models\Achievement;
 use App\Models\User;

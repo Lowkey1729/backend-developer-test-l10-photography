@@ -2,7 +2,7 @@
 
 namespace App\Listeners\Achievements;
 
-use App\Actions\UnlockAchievementAction;
+use App\Actions\Achievements\UnlockAchievementAction;
 use App\Enums\LessonAchievementNameEnum;
 use App\Events\LessonWatched;
 

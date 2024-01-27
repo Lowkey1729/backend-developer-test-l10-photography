@@ -1,9 +1,9 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Controllers;
 
-use App\Actions\CommentOnLessonAction;
-use App\Actions\ProcessWatchedLessonAction;
+use App\Actions\Lessons\CommentOnLessonAction;
+use App\Actions\Lessons\ProcessWatchedLessonAction;
 use App\Enums\BadgeNameEnum;
 use App\Enums\CommentAchievementNameEnum;
 use App\Enums\LessonAchievementNameEnum;

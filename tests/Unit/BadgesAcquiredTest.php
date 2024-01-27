@@ -2,7 +2,7 @@
 
 namespace Tests\Unit;
 
-use App\Actions\UnlockBadgeAction;
+use App\Actions\Badges\UnlockBadgeAction;
 use App\Enums\BadgeNameEnum;
 use App\Events\BadgeUnlocked;
 use App\Models\Achievement;

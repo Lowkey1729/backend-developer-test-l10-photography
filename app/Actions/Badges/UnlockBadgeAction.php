@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\Badges;
 
 use App\Enums\BadgeNameEnum;
 use App\Enums\BadgeStatusEnum;

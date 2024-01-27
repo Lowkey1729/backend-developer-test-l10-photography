@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Actions;
+namespace App\Actions\Lessons;
 
 use App\Events\CommentWritten;
 use App\Models\Comment;
