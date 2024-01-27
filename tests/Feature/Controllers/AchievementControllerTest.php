@@ -63,8 +63,8 @@ class AchievementControllerTest extends TestCase
         $response->assertJson([
             'unlocked_achievements' => [],
             'next_available_achievements' => [
-                'comment' => CommentAchievementNameEnum::FIRST_COMMENT_WRITTEN->name,
-                'lesson' => LessonAchievementNameEnum::FIRST_LESSON_WATCHED->name,
+                'comment' => CommentAchievementNameEnum::FIRST_COMMENT_WRITTEN->value,
+                'lesson' => LessonAchievementNameEnum::FIRST_LESSON_WATCHED->value,
             ],
             'current_badge' => BadgeNameEnum::BEGINNER->name,
             'next_badge' => BadgeNameEnum::INTERMEDIATE->name,
@@ -86,7 +86,7 @@ class AchievementControllerTest extends TestCase
         $data = $response->json();
 
         $this->assertArrayHasKey('unlocked_achievements', $data);
-        $this->assertContains(LessonAchievementNameEnum::FIRST_LESSON_WATCHED->name, $data['unlocked_achievements']);
+        $this->assertContains(LessonAchievementNameEnum::FIRST_LESSON_WATCHED->value, $data['unlocked_achievements']);
     }
 
     public function test_it_returns_the_comments_written_achievements()
@@ -102,7 +102,7 @@ class AchievementControllerTest extends TestCase
         $data = $response->json();
 
         $this->assertArrayHasKey('unlocked_achievements', $data);
-        $this->assertContains(CommentAchievementNameEnum::FIRST_COMMENT_WRITTEN->name, $data['unlocked_achievements']);
+        $this->assertContains(CommentAchievementNameEnum::FIRST_COMMENT_WRITTEN->value, $data['unlocked_achievements']);
     }
 
     public function test_it_returns_more_than_one_comments_written_achievements()
@@ -120,8 +120,8 @@ class AchievementControllerTest extends TestCase
         $data = $response->json();
 
         $this->assertArrayHasKey('unlocked_achievements', $data);
-        $this->assertContains(CommentAchievementNameEnum::FIRST_COMMENT_WRITTEN->name, $data['unlocked_achievements']);
-        $this->assertContains(CommentAchievementNameEnum::THREE_COMMENTS_WRITTEN->name, $data['unlocked_achievements']);
+        $this->assertContains(CommentAchievementNameEnum::FIRST_COMMENT_WRITTEN->value, $data['unlocked_achievements']);
+        $this->assertContains(CommentAchievementNameEnum::THREE_COMMENTS_WRITTEN->value, $data['unlocked_achievements']);
     }
 
     public function test_it_returns_more_than_one_lessons_watched_achievements()
@@ -139,9 +139,9 @@ class AchievementControllerTest extends TestCase
         $data = $response->json();
 
         $this->assertArrayHasKey('unlocked_achievements', $data);
-        $this->assertContains(LessonAchievementNameEnum::FIRST_LESSON_WATCHED->name, $data['unlocked_achievements']);
-        $this->assertContains(LessonAchievementNameEnum::FIVE_LESSONS_WATCHED->name, $data['unlocked_achievements']);
-        $this->assertContains(LessonAchievementNameEnum::TEN_LESSONS_WATCHED->name, $data['unlocked_achievements']);
+        $this->assertContains(LessonAchievementNameEnum::FIRST_LESSON_WATCHED->value, $data['unlocked_achievements']);
+        $this->assertContains(LessonAchievementNameEnum::FIVE_LESSONS_WATCHED->value, $data['unlocked_achievements']);
+        $this->assertContains(LessonAchievementNameEnum::TEN_LESSONS_WATCHED->value, $data['unlocked_achievements']);
     }
 
     public function test_it_returns_next_available_lesson_watched_achievement()
@@ -158,7 +158,7 @@ class AchievementControllerTest extends TestCase
 
         $this->assertArrayHasKey('next_available_achievements', $data);
         $this->assertArrayHasKey('lesson', $data['next_available_achievements']);
-        $this->assertEquals(LessonAchievementNameEnum::FIVE_LESSONS_WATCHED->name, $data['next_available_achievements']['lesson']);
+        $this->assertEquals(LessonAchievementNameEnum::FIVE_LESSONS_WATCHED->value, $data['next_available_achievements']['lesson']);
     }
 
     public function test_it_returns_next_available_comment_written_achievement()
@@ -175,7 +175,7 @@ class AchievementControllerTest extends TestCase
 
         $this->assertArrayHasKey('next_available_achievements', $data);
         $this->assertArrayHasKey('comment', $data['next_available_achievements']);
-        $this->assertEquals(CommentAchievementNameEnum::THREE_COMMENTS_WRITTEN->name, $data['next_available_achievements']['comment']);
+        $this->assertEquals(CommentAchievementNameEnum::THREE_COMMENTS_WRITTEN->value, $data['next_available_achievements']['comment']);
     }
 
     public function test_it_returns_current_badge()

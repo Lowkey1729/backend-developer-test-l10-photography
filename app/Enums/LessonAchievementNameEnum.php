@@ -13,4 +13,13 @@ enum LessonAchievementNameEnum: string
     case TWENTY_FIVE_LESSONS_WATCHED = '25 Lessons Watched';
 
     case FIFTY_LESSONS_WATCHED = '50 Lessons Watched';
+
+    public static function fromName(string $name)
+    {
+        $enumClass = 'App\Enums\LessonAchievementNameEnum';
+        $constName =  $enumClass . '::' . $name;
+
+        return constant($constName);
+
+    }
 }

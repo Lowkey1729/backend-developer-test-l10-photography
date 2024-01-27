@@ -22,6 +22,7 @@ class AchievementViewModel extends ViewModel
     public function unlockedAchievements(): array
     {
         return $this->user->achievements()
+            ->get()
             ->pluck('name')
             ->toArray();
     }
