@@ -39,6 +39,41 @@ class AchievementControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
+
+    public function test_it_returns_404_for_an_invalid_user_selected()
+    {
+        $id = fake()->sentence;
+
+        $response = $this->get("/users/$id/achievements");
+
+        $response->assertStatus(404);
+    }
+
+    public function test_it_returns_the_required_response()
+    {
+        $response = $this->get("/users/{$this->user->id}/achievements");
+
+        $unlockedBadgesIds = $this->user->badges()->pluck('badge_id')->toArray();
+
+       $acquiredBadgesCount = Badge::query()
+            ->whereNotIn('id', $unlockedBadgesIds)
+            ->count();
+
+        $response->assertStatus(200);
+
+        $response->assertJson([
+            'unlocked_achievements' => [],
+            'next_available_achievements' => [
+                'comment' => CommentAchievementNameEnum::FIRST_COMMENT_WRITTEN->name,
+                'lesson' => LessonAchievementNameEnum::FIRST_LESSON_WATCHED->name
+            ],
+            'current_badge' => BadgeNameEnum::BEGINNER->name,
+            'next_badge' => BadgeNameEnum::INTERMEDIATE->name,
+            'remaining_to_unlock_next_badge' => $acquiredBadgesCount
+        ]);
+
+    }
+
     public function test_it_returns_the_lessons_watched_achievements()
     {
         $lesson = Lesson::query()->first();
