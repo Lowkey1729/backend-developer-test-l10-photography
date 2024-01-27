@@ -7,6 +7,8 @@
 ```
 composer install
 
+cp env.example .env
+
 ```
 
 ### Run the command below to run migrations and seed data into the application
