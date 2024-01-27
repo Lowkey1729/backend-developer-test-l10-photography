@@ -9,6 +9,8 @@ use App\Models\Lesson;
 use App\Models\User;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Validator;
+use function Laravel\Prompts\select;
+use function Laravel\Prompts\text;
 
 class SimulateApp extends Command
 {
@@ -31,26 +33,27 @@ class SimulateApp extends Command
      */
     public function handle(): int
     {
-        $category = $this->ask('Which category do you want to simulate for?');
-        $count = $this->ask('How many do you want to generate for '.$category);
+        $category = select(
+            label: 'Which category do you want to simulate for?',
+            options: [
+                AchievementCategoryEnum::COMMENTS->value,
+                AchievementCategoryEnum::LESSONS->value,
+            ],
+            required: true,
+        );
 
-        $validator = Validator::make([
-            'category' => $category,
-            'count' => $count,
-        ], [
-            'category' => ['required', 'in:lessons,comments'],
-            'count' => ['required', 'integer'],
-        ]);
+        $text = match ($category){
+            AchievementCategoryEnum::COMMENTS->value => "How many written comments do you want to generate?",
+            AchievementCategoryEnum::LESSONS->value => "How many watched lessons do you want to generate"
+        };
 
-        if ($validator->fails()) {
-            $this->info('App not simulated. See error messages below');
-
-            foreach ($validator->errors()->all() as $error) {
-                $this->error($error);
+        $count = text(
+            label: $text,
+            required: true,
+            validate: function (int $value) {
             }
+        );
 
-            return 1;
-        }
 
         $user = User::query()->first();
 
