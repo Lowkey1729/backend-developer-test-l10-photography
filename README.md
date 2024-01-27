@@ -35,6 +35,8 @@ php artisan test
 
 ```
 
+<img width="517" alt="test-cases" src="test-cases.png">
+
 ### Run the command below to simulate the application
 
 ```
