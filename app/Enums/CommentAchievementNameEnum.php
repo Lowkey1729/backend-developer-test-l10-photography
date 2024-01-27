@@ -16,7 +16,7 @@ enum CommentAchievementNameEnum: string
     public static function fromName(string $name)
     {
         $enumClass = 'App\Enums\CommentAchievementNameEnum';
-        $constName =  $enumClass . '::' . $name;
+        $constName = $enumClass.'::'.$name;
 
         return constant($constName);
 

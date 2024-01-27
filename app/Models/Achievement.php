@@ -25,7 +25,7 @@ class Achievement extends Model
     protected function name(): Attribute
     {
         return Attribute::make(
-            get: fn (string $value) => match ($this->category){
+            get: fn (string $value) => match ($this->category) {
                 AchievementCategoryEnum::COMMENTS->value => CommentAchievementNameEnum::fromName($value)->value,
                 AchievementCategoryEnum::LESSONS->value => LessonAchievementNameEnum::fromName($value)->value,
             },

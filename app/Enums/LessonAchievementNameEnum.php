@@ -17,7 +17,7 @@ enum LessonAchievementNameEnum: string
     public static function fromName(string $name)
     {
         $enumClass = 'App\Enums\LessonAchievementNameEnum';
-        $constName =  $enumClass . '::' . $name;
+        $constName = $enumClass.'::'.$name;
 
         return constant($constName);
 

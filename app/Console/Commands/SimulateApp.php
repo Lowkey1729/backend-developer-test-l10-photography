@@ -8,7 +8,7 @@ use App\Enums\AchievementCategoryEnum;
 use App\Models\Lesson;
 use App\Models\User;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\Validator;
+
 use function Laravel\Prompts\select;
 use function Laravel\Prompts\text;
 
@@ -42,9 +42,9 @@ class SimulateApp extends Command
             required: true,
         );
 
-        $text = match ($category){
-            AchievementCategoryEnum::COMMENTS->value => "How many written comments do you want to generate?",
-            AchievementCategoryEnum::LESSONS->value => "How many watched lessons do you want to generate"
+        $text = match ($category) {
+            AchievementCategoryEnum::COMMENTS->value => 'How many written comments do you want to generate?',
+            AchievementCategoryEnum::LESSONS->value => 'How many watched lessons do you want to generate'
         };
 
         $count = text(
@@ -53,7 +53,6 @@ class SimulateApp extends Command
             validate: function (int $value) {
             }
         );
-
 
         $user = User::query()->first();
 
