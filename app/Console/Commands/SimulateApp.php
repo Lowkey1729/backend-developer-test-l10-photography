@@ -32,7 +32,7 @@ class SimulateApp extends Command
     public function handle(): int
     {
         $category = $this->ask('Which category do you want to simulate for?');
-        $count = $this->ask('How many do you want to generate for '. $category);
+        $count = $this->ask('How many do you want to generate for '.$category);
 
         $validator = Validator::make([
             'category' => $category,
@@ -48,12 +48,13 @@ class SimulateApp extends Command
             foreach ($validator->errors()->all() as $error) {
                 $this->error($error);
             }
+
             return 1;
         }
 
         $user = User::query()->first();
 
-        if ($category === AchievementCategoryEnum::LESSONS->value){
+        if ($category === AchievementCategoryEnum::LESSONS->value) {
 
             $lessons = Lesson::query()->take($count)->get();
 
@@ -63,7 +64,7 @@ class SimulateApp extends Command
 
         }
 
-        if ($category === AchievementCategoryEnum::COMMENTS->value){
+        if ($category === AchievementCategoryEnum::COMMENTS->value) {
             $lesson = Lesson::query()->first();
 
             for ($i = 0; $i <= $count; $i++) {
@@ -72,9 +73,7 @@ class SimulateApp extends Command
 
         }
 
-        return  0;
-
+        return 0;
 
     }
-
 }

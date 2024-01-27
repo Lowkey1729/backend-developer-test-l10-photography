@@ -39,7 +39,6 @@ class AchievementControllerTest extends TestCase
         $response->assertStatus(200);
     }
 
-
     public function test_it_returns_404_for_an_invalid_user_selected()
     {
         $id = fake()->sentence;
@@ -55,7 +54,7 @@ class AchievementControllerTest extends TestCase
 
         $unlockedBadgesIds = $this->user->badges()->pluck('badge_id')->toArray();
 
-       $acquiredBadgesCount = Badge::query()
+        $acquiredBadgesCount = Badge::query()
             ->whereNotIn('id', $unlockedBadgesIds)
             ->count();
 
@@ -65,11 +64,11 @@ class AchievementControllerTest extends TestCase
             'unlocked_achievements' => [],
             'next_available_achievements' => [
                 'comment' => CommentAchievementNameEnum::FIRST_COMMENT_WRITTEN->name,
-                'lesson' => LessonAchievementNameEnum::FIRST_LESSON_WATCHED->name
+                'lesson' => LessonAchievementNameEnum::FIRST_LESSON_WATCHED->name,
             ],
             'current_badge' => BadgeNameEnum::BEGINNER->name,
             'next_badge' => BadgeNameEnum::INTERMEDIATE->name,
-            'remaining_to_unlock_next_badge' => $acquiredBadgesCount
+            'remaining_to_unlock_next_badge' => $acquiredBadgesCount,
         ]);
 
     }
