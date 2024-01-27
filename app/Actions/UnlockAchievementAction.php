@@ -14,7 +14,11 @@ class UnlockAchievementAction
             ->where('name', $achievementName)
             ->first();
 
-        $user->achievements()->attach($lessonAchievement->id);
+        $achievementExists = $user->achievements()->where('achievement_id', $lessonAchievement->id)->exists();
+
+        if (! $achievementExists) {
+            $user->achievements()->attach($lessonAchievement->id, ['order' => $lessonAchievement->order]);
+        }
 
         event(new AchievementUnlocked($achievementName, $user));
 

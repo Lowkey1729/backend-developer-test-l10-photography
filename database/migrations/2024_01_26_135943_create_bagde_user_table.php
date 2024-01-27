@@ -15,6 +15,7 @@ return new class extends Migration
             $table->foreignId('badge_id')->constrained();
             $table->foreignId('user_id')->constrained();
             $table->string('status')->default('inactive');
+            $table->bigInteger('order');
         });
     }
 
@@ -23,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('bagde_user');
+        Schema::dropIfExists('badge_user');
     }
 };

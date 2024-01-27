@@ -16,7 +16,7 @@ class DatabaseSeeder extends Seeder
             LessonSeeder::class,
             AchievementSeeder::class,
             BadgeSeeder::class,
-
+            UserSeeder::class,
         ]);
     }
 }

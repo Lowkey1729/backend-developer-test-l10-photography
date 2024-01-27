@@ -57,22 +57,22 @@ class AchievementFactory extends Factory
                     'order' => 1,
                 ],
                 [
-                    'name' => CommentAchievementNameEnum::THREE_LESSONS_WRITTEN->name,
+                    'name' => CommentAchievementNameEnum::THREE_COMMENTS_WRITTEN->name,
                     'category' => AchievementCategoryEnum::COMMENTS->name,
                     'order' => 2,
                 ],
                 [
-                    'name' => CommentAchievementNameEnum::FIVE_LESSONS_WRITTEN->name,
+                    'name' => CommentAchievementNameEnum::FIVE_COMMENTS_WRITTEN->name,
                     'category' => AchievementCategoryEnum::COMMENTS->name,
                     'order' => 3,
                 ],
                 [
-                    'name' => CommentAchievementNameEnum::TEN_LESSONS_WRITTEN->name,
+                    'name' => CommentAchievementNameEnum::TEN_COMMENTS_WRITTEN->name,
                     'category' => AchievementCategoryEnum::COMMENTS->name,
                     'order' => 4,
                 ],
                 [
-                    'name' => CommentAchievementNameEnum::TWENTY_LESSONS_WRITTEN->name,
+                    'name' => CommentAchievementNameEnum::TWENTY_COMMENTS_WRITTEN->name,
                     'category' => AchievementCategoryEnum::COMMENTS->name,
                     'order' => 5,
                 ]

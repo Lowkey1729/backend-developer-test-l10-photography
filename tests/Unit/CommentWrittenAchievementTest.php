@@ -91,7 +91,7 @@ class CommentWrittenAchievementTest extends TestCase
 
         $this->assertCommentWasWritten($comment);
 
-        $this->assertCommentAchievementWasUnlocked($comment, CommentAchievementNameEnum::THREE_LESSONS_WRITTEN->name);
+        $this->assertCommentAchievementWasUnlocked($comment, CommentAchievementNameEnum::THREE_COMMENTS_WRITTEN->name);
 
     }
 
@@ -110,7 +110,7 @@ class CommentWrittenAchievementTest extends TestCase
 
         $this->assertCommentWasWritten($comment);
 
-        $this->assertCommentAchievementWasUnlocked($comment, CommentAchievementNameEnum::FIVE_LESSONS_WRITTEN->name);
+        $this->assertCommentAchievementWasUnlocked($comment, CommentAchievementNameEnum::FIVE_COMMENTS_WRITTEN->name);
 
     }
 
@@ -129,7 +129,7 @@ class CommentWrittenAchievementTest extends TestCase
 
         $this->assertCommentWasWritten($comment);
 
-        $this->assertCommentAchievementWasUnlocked($comment, CommentAchievementNameEnum::TEN_LESSONS_WRITTEN->name);
+        $this->assertCommentAchievementWasUnlocked($comment, CommentAchievementNameEnum::TEN_COMMENTS_WRITTEN->name);
 
     }
 
@@ -148,7 +148,7 @@ class CommentWrittenAchievementTest extends TestCase
 
         $this->assertCommentWasWritten($comment);
 
-        $this->assertCommentAchievementWasUnlocked($comment, CommentAchievementNameEnum::TWENTY_LESSONS_WRITTEN->name);
+        $this->assertCommentAchievementWasUnlocked($comment, CommentAchievementNameEnum::TWENTY_COMMENTS_WRITTEN->name);
 
     }
 

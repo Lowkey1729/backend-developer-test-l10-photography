@@ -76,21 +76,21 @@ class User extends Authenticatable
      */
     public function achievements(): BelongsToMany
     {
-        return $this->belongsToMany(Achievement::class);
+        return $this->belongsToMany(Achievement::class)->withPivot('order');
     }
 
     public function badges(): BelongsToMany
     {
-        return $this->belongsToMany(Badge::class)->withPivot('status');
+        return $this->belongsToMany(Badge::class)->withPivot('status', 'order');
     }
 
-    public function activeBadges(): BelongsToMany
+    public function activeBadge(): BelongsToMany
     {
         return $this->belongsToMany(Badge::class)
             ->wherePivot('status', BadgeStatusEnum::ACTIVE->value);
     }
 
-    public function inActiveBadges(): BelongsToMany
+    public function inActiveBadge(): BelongsToMany
     {
         return $this->belongsToMany(Badge::class)
             ->wherePivot('status', BadgeStatusEnum::INACTIVE->value);

@@ -34,10 +34,10 @@ class ProcessCommentedLessonAchievement
 
         match ($commentsCount) {
             1 => UnlockAchievementAction::execute(CommentAchievementNameEnum::FIRST_COMMENT_WRITTEN->name, $comment->user),
-            3 => UnlockAchievementAction::execute(CommentAchievementNameEnum::THREE_LESSONS_WRITTEN->name, $comment->user),
-            5 => UnlockAchievementAction::execute(CommentAchievementNameEnum::FIVE_LESSONS_WRITTEN->name, $comment->user),
-            10 => UnlockAchievementAction::execute(CommentAchievementNameEnum::TEN_LESSONS_WRITTEN->name, $comment->user),
-            20 => UnlockAchievementAction::execute(CommentAchievementNameEnum::TWENTY_LESSONS_WRITTEN->name, $comment->user),
+            3 => UnlockAchievementAction::execute(CommentAchievementNameEnum::THREE_COMMENTS_WRITTEN->name, $comment->user),
+            5 => UnlockAchievementAction::execute(CommentAchievementNameEnum::FIVE_COMMENTS_WRITTEN->name, $comment->user),
+            10 => UnlockAchievementAction::execute(CommentAchievementNameEnum::TEN_COMMENTS_WRITTEN->name, $comment->user),
+            20 => UnlockAchievementAction::execute(CommentAchievementNameEnum::TWENTY_COMMENTS_WRITTEN->name, $comment->user),
             default => null
         };
 

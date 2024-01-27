@@ -31,14 +31,7 @@ class BadgesAcquiredTest extends TestCase
      */
     public function test_it_unlocks_the_intermediate_badge_after_unlocking_four_achievements(): void
     {
-        $this->achievementIds = Achievement::factory()
-            ->count(4)
-            ->defaultAchievements()
-            ->create()
-            ->pluck('id')
-            ->toArray();
-
-        $this->user->achievements()->attach($this->achievementIds);
+        $this->createAchievements(4);
 
         \Event::fake();
 
@@ -46,21 +39,13 @@ class BadgesAcquiredTest extends TestCase
 
         $this->assertEquals(4, $this->user->achievements()->count());
 
-
         $this->assertBadgeWasAcquired(BadgeNameEnum::INTERMEDIATE->name);
 
     }
 
     public function test_it_unlocks_the_advanced_badge_after_unlocking_eight_achievements(): void
     {
-        $this->achievementIds = Achievement::factory()
-            ->count(8)
-            ->defaultAchievements()
-            ->create()
-            ->pluck('id')
-            ->toArray();
-
-        $this->user->achievements()->attach($this->achievementIds);
+        $this->createAchievements(8);
 
         \Event::fake();
 
@@ -74,14 +59,7 @@ class BadgesAcquiredTest extends TestCase
 
     public function test_it_unlocks_the_master_badge_after_unlocking_ten_achievements(): void
     {
-        $this->achievementIds = Achievement::factory()
-            ->count(10)
-            ->defaultAchievements()
-            ->create()
-            ->pluck('id')
-            ->toArray();
-
-        $this->user->achievements()->attach($this->achievementIds);
+        $this->createAchievements(10);
 
         \Event::fake();
 
@@ -95,14 +73,8 @@ class BadgesAcquiredTest extends TestCase
 
     public function test_it_does_not_unlock_any_badge_when_number_of_achievements_is_not_met(): void
     {
-        $this->achievementIds = Achievement::factory()
-            ->count(3)
-            ->defaultAchievements()
-            ->create()
-            ->pluck('id')
-            ->toArray();
 
-        $this->user->achievements()->attach($this->achievementIds);
+        $this->createAchievements(3);
 
         \Event::fake();
 
@@ -132,5 +104,23 @@ class BadgesAcquiredTest extends TestCase
 
         \Event::assertDispatched(BadgeUnlocked::class);
 
+    }
+
+    protected function createAchievements(int $count): void
+    {
+        $achievementElements = Achievement::factory()
+            ->count($count)
+            ->defaultAchievements()
+            ->create()
+            ->map(function ($achievement) {
+                return [
+                    $achievement->id => ['order' => $achievement->order],
+                ];
+            })
+            ->toArray();
+
+        $achievementElements = (call_user_func_array('array_replace_recursive', $achievementElements));
+
+        $this->user->achievements()->attach($achievementElements);
     }
 }

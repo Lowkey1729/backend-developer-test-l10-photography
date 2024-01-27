@@ -32,11 +32,16 @@ class UnlockBadgeAction
 
         \DB::transaction(function () use ($user, $badge) {
 
-            $ids = $user->activeBadges()->pluck('badge_id')->toArray();
+            $badgeExists = $user->badges()->where('badge_id', $badge->id)->exists();
 
-            $user->activeBadges()->syncWithPivotValues($ids, ['status' => BadgeStatusEnum::INACTIVE->value]);
+            if (! $badgeExists) {
 
-            $user->badges()->attach($badge->id, ['status' => BadgeStatusEnum::ACTIVE->value]);
+                $ids = $user->activeBadge()->pluck('badge_id')->toArray();
+
+                $user->activeBadge()->syncWithPivotValues($ids, ['status' => BadgeStatusEnum::INACTIVE->value]);
+
+                $user->badges()->attach($badge->id, ['status' => BadgeStatusEnum::ACTIVE->value, 'order' => $badge->order]);
+            }
         });
 
         event(new BadgeUnlocked($badgeName, $user));
