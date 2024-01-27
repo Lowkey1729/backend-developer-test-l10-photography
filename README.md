@@ -2,7 +2,7 @@
 
 ## Back-end Developer Test
 
-### Run the following commands to set up the test
+### Run the following commands to set up the app
 
 ```
 composer install
