@@ -38,14 +38,13 @@ php artisan  app:simulate-app
 
 ```
 
+<img width="517" alt="simulation-prompt" src="simulation-prompt.png">
+
 ### To start the app
 
 ```yaml
 php artisan serve
 
-The app should start running at http://127.0.0.1:8000
-
-Test the api response at http://127.0.0.1:8000/users/1/achievements
+Test the api response at http://127.0.0.1/users/1/achievements
 ```
 
-### Response
